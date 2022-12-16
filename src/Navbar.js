@@ -10,7 +10,14 @@ const Navbar = ({ accounts, setAccounts }) => {
 
   // TODO: 連接錢包
   async function connectAccount() {
-
+    // 偵測師否有安裝 ether
+    if (window.ethereum) {
+      const curAccount = await window.ethereum.request({
+        method: 'eth_requestAccounts'
+      })
+      setAccounts(prev => [...prev, curAccount]);
+    }
+    
   }
 
   return (
